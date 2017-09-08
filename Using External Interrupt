@@ -1,0 +1,24 @@
+volatile int state = LOW;
+const int LED = 9;
+const int BUTTON = 2;
+
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(LED, OUTPUT);
+  attachInterrupt(digitalPinToInterrupt(2), onPressed, RISING);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  digitalWrite(LED,state);
+}
+
+void onPressed(){
+  static unsigned long lastMillis = 0;
+  unsigned long newMillis = millis();
+  if(newMillis - lastMillis >= 50){
+    state = !state;
+    lastMillis = newMillis;
+  }
+}
