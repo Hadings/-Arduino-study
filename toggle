@@ -1,0 +1,20 @@
+const int LED = 9;
+const int BUTTON =2;
+boolean lastButton = LOW;
+boolean ledOn = false;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode (LED,OUTPUT);
+  pinMode (BUTTON, INPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  boolean currentButton = digitalRead(BUTTON);
+  if( currentButton == HIGH && lastButton == LOW){
+    ledOn = !ledOn; // 반전된다. 상태가 바뀔때
+  }
+  lastButton = currentButton;
+  digitalWrite(LED, ledOn);
+}
