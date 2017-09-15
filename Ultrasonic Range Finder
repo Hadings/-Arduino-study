@@ -1,0 +1,31 @@
+int trigPin = 13;
+int echoPin = 11;
+long duration;
+long distance;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  duration = pulseIn(echoPin, HIGH); //duration is presented in microceconds 
+  distance = microsecondsToCentimeter(duration); 
+  Serial.print("The distance to the target is: ");    
+  Serial.print(distance);    
+  Serial.println("centimeters.");    
+  delay(1000);
+}
+
+long microsecondsToCentimeter(long time)  {     
+  return time/29/2;    // The speed of sound is 340m/s or 29 microseconds/centimeter. 2는 왕복과 29는 센티미터로 환산됨
+}
