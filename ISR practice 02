@@ -1,0 +1,37 @@
+//Interrupt Service Routine
+
+const int LED[3]={3,4,5};
+const int button =2;
+volatile int state = LOW;
+volatile int state1 = LOW;
+volatile int i = 0;
+void setup() {
+  // put your setup code here, to run once:
+  for(int i =0;i<3;i++){
+    pinMode(LED[i],OUTPUT);
+   //pinMode(button,INPUT);
+   attachInterrupt(digitalPinToInterrupt(2), onPressed, RISING);
+  }
+    
+    //pinMode(button,INPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+   
+    digitalWrite(LED[i%3],state1);
+    
+  Serial.print(i);
+}
+void onPressed(){
+  static unsigned long lastMillis = 0;
+  unsigned long newMillis = millis();
+  if(newMillis - lastMillis >= 50){
+    state1 = !state1;
+    digitalWrite(LED[(i+1)%3],state);
+    digitalWrite(LED[(i+2)%3],state);
+    i++;
+    
+    lastMillis = newMillis;
+  }
+}
