@@ -1,9 +1,12 @@
+// 3bit binary count
+// ->  <- reverse
+
 #define LED_0 2
 #define LED_1 3
 #define LED_2 4
 #define LED_3 5
 
-int leds[] = { LED_0, LED_1, LED_2, LED_3, LED_4, LED_5, LED_6, LED_7, } ;
+int leds[] = { LED_0, LED_1, LED_2, LED_3, } ;
 
 void setup() {
   for ( int i = LED_0 ; i <= LED_3 ; i++ ) {
@@ -25,4 +28,3 @@ void loop() {
   Serial.println(count++);
 
 }
-
