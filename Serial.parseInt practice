@@ -1,0 +1,17 @@
+int data=0; 
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600); // Serial Port at 9600 baud
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  if( Serial.available() > 0) // data in there?
+  { 
+    data += Serial.parseInt(); 
+    Serial.println(data); // Print
+    delay(1000);
+  }
+
+}
