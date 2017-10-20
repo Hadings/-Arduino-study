@@ -1,0 +1,20 @@
+#include<TimerOne.h>
+
+const int BUTTON_INT = 1;
+const int LED = 13;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(LED,OUTPUT);
+  Timer1.initialize(500000);
+  Timer1.attachInterrupt(blinky);  
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  
+}
+
+void blinky(){
+  digitalWrite(LED, !digitalRead(LED));
+}
